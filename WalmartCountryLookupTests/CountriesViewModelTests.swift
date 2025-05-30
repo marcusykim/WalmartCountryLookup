@@ -29,14 +29,15 @@ final class CountriesViewModelTests: XCTestCase {
         let exp = expectation(description: "onUpdate called")
         vm.onUpdate = { exp.fulfill() }
 
-        
         await vm.load()
-    
-        wait(for: [exp], timeout: 1.0)
+
+        // NEW async wait
+        await fulfillment(of: [exp], timeout: 1.0)
 
         XCTAssertEqual(vm.allCountries, sample)
         XCTAssertEqual(vm.filtered, sample)
     }
+
 
     @MainActor
     func testFilterByNameAndCapital() {
@@ -72,21 +73,24 @@ final class CountriesViewModelTests: XCTestCase {
 
     @MainActor
     func testLoadFailureTriggersErrorAndFallback() async {
-        // use the test‐file subclass that stubs in our fallback
+        // Use your test subclass so loadFromBundle() returns stub data
         let vm = TestableViewModel(service: MockNetworkServiceFailure())
-        var errorCalled = false
-        var updateCalled = false
-        vm.onError  = { _ in errorCalled = true }
-        vm.onUpdate = { updateCalled = true }
+
+        let expError  = expectation(description: "onError called")
+        let expUpdate = expectation(description: "fallback update")
+        vm.onError  = { _ in expError.fulfill() }
+        vm.onUpdate = { expUpdate.fulfill() }
 
         await vm.load()
 
-        XCTAssertTrue(errorCalled)
-        XCTAssertTrue(updateCalled)
+        // <-- this is your fallback test's wait -->
+        await fulfillment(of: [expError, expUpdate], timeout: 1.0)
+
         XCTAssertFalse(vm.allCountries.isEmpty)
         XCTAssertEqual(vm.allCountries, vm.filtered)
         XCTAssertEqual(vm.allCountries.first?.name, "Fallbackland")
     }
+
 
 
 }
