@@ -6,7 +6,7 @@ A lightweight UIKit app that fetches a list of countries, lets you search and �
 
 ## Overview
 
-* **Language & UI**: Swift 5, UIKit (no storyboards → zero merge conflicts).
+* **Language & UI**: Swift 5, UIKit (no storyboards).
 * **Architecture**: MVVM + Protocol-oriented Networking.
 * **Concurrency**: `async/await` + `@MainActor` for main-thread safety.
 * **Testing**: Full unit-test suite for model, networking, ViewModel logic.
@@ -40,7 +40,7 @@ open WalmartCountryLookup.xcodeproj
 
 ---
 
-## 🏗 Project Structure
+## Project Structure
 
 ```
 WalmartCountryLookup/
