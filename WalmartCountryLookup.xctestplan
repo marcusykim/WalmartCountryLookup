@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "7CA9511E-58F7-46A4-B4F8-1A09FFCF48A0",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:WalmartCountryLookup.xcodeproj",
+      "identifier" : "E22837B62DE8009C007E4619",
+      "name" : "WalmartCountryLookup"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:WalmartCountryLookup.xcodeproj",
+        "identifier" : "E22837E62DE94E02007E4619",
+        "name" : "WalmartCountryLookupTests"
+      }
+    }
+  ],
+  "version" : 1
+}
