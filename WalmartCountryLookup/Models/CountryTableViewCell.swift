@@ -15,33 +15,33 @@ class CountryTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) { fatalError("init(coder:) not supported") }
 
     private func setupUI() {
-        // Name + Region
+        
         nameLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         nameLabel.adjustsFontForContentSizeCategory = true
         nameLabel.numberOfLines = 0
 
-        // Country Code
+        
         codeLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         codeLabel.adjustsFontForContentSizeCategory = true
         codeLabel.textAlignment = .right
 
-        // Capital (below)
+       
         capitalLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         capitalLabel.adjustsFontForContentSizeCategory = true
         capitalLabel.numberOfLines = 0
 
-        // Header stack: nameLabel on left, codeLabel on right
+      
         let headerStack = UIStackView(arrangedSubviews: [nameLabel, codeLabel])
         headerStack.axis = .horizontal
         headerStack.alignment = .firstBaseline
         headerStack.distribution = .fill
         headerStack.spacing = 8
 
-        // Make codeLabel hug its content so nameLabel expands
+        
         nameLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         codeLabel.setContentHuggingPriority(.required, for: .horizontal)
 
-        // Main vertical stack
+        
         let mainStack = UIStackView(arrangedSubviews: [headerStack, capitalLabel])
         mainStack.axis = .vertical
         mainStack.spacing = 4

@@ -13,8 +13,6 @@ private final class MockNetworkServiceFailure: NetworkServiceProtocol {
     }
 }
 
-/// Subclass that overrides the bundle‐loading fallback,
-/// so we can guarantee non‐empty fallback data in tests.
 private final class TestableViewModel: CountriesViewModel {
     override func loadFromBundle() -> [Country] {
         [ Country(name: "Fallbackland", region: "FB", code: "FB", capital: "Fallback") ]
@@ -31,7 +29,6 @@ final class CountriesViewModelTests: XCTestCase {
 
         await vm.load()
 
-        // NEW async wait
         await fulfillment(of: [exp], timeout: 1.0)
 
         XCTAssertEqual(vm.allCountries, sample)
@@ -73,7 +70,6 @@ final class CountriesViewModelTests: XCTestCase {
 
     @MainActor
     func testLoadFailureTriggersErrorAndFallback() async {
-        // Use your test subclass so loadFromBundle() returns stub data
         let vm = TestableViewModel(service: MockNetworkServiceFailure())
 
         let expError  = expectation(description: "onError called")
@@ -83,7 +79,6 @@ final class CountriesViewModelTests: XCTestCase {
 
         await vm.load()
 
-        // <-- this is your fallback test's wait -->
         await fulfillment(of: [expError, expUpdate], timeout: 1.0)
 
         XCTAssertFalse(vm.allCountries.isEmpty)

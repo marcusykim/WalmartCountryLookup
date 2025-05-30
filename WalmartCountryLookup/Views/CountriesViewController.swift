@@ -1,12 +1,11 @@
 import UIKit
 
 class CountriesViewController: UIViewController {
-    // MARK: - Properties
+    
     private let viewModel = CountriesViewModel()
     private let tableView = UITableView(frame: .zero, style: .plain)
     private let search    = UISearchController(searchResultsController: nil)
 
-    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title               = "🌎 Walmart Rollback: Countries"
@@ -18,14 +17,11 @@ class CountriesViewController: UIViewController {
         setupRefresh()
         bindViewModel()
 
-        // Load data asynchronously without marking viewDidLoad async
         Task {
             await viewModel.load()
         }
     }
-
-    // MARK: - Setup Methods
-
+    
     private func setupTable() {
         tableView.register(
             CountryTableViewCell.self,
@@ -116,8 +112,6 @@ class CountriesViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource & Delegate
-
 extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tv: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.filtered.count
@@ -133,8 +127,6 @@ extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
 }
-
-// MARK: - UISearchResultsUpdating
 
 extension CountriesViewController: UISearchResultsUpdating {
     func updateSearchResults(for sc: UISearchController) {
