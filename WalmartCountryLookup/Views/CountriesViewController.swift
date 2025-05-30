@@ -1,128 +1,119 @@
 import UIKit
 
 class CountriesViewController: UIViewController {
-    
     private let viewModel = CountriesViewModel()
-    private let tableView = UITableView(frame: .zero, style: .plain)
-    private let search    = UISearchController(searchResultsController: nil)
-
+    private let tableView = UITableView()
+    private let search = UISearchController(searchResultsController: nil)
+    private let activity = UIActivityIndicatorView(style: .large)
+    private let banner = UILabel()
+    private let spinner = UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
-        title               = "🌎 Walmart Rollback: Countries"
-        view.backgroundColor = .systemBackground
-
-        setupTable()
-        setupBanner()
-        setupSearch()
-        setupRefresh()
+        setupUI()
         bindViewModel()
-
-        Task {
-            await viewModel.load()
-        }
+        viewModel.load()
+        
     }
-    
-    private func setupTable() {
-        tableView.register(
-            CountryTableViewCell.self,
-            forCellReuseIdentifier: CountryTableViewCell.reuseID
-        )
-        tableView.dataSource = self
-        tableView.delegate   = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
 
+    private func setupUI() {
+        title = "🌎 Walmart Rollback"
+        view.backgroundColor = .systemBackground
+        setupBanner()
+        setupActivity()
+        setupTable()
+        setupSearch()
+    }
+
+    private func setupBanner() {
+        banner.text = "Pull for rollback deal 🎉"
+        banner.backgroundColor = .systemYellow.withAlphaComponent(0.2)
+        banner.textAlignment = .center
+        banner.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(banner)
+        NSLayoutConstraint.activate([
+            banner.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            banner.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            banner.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            banner.heightAnchor.constraint(equalToConstant: 44)
+        ])
+    }
+
+    private func setupActivity() {
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(activity)
+        NSLayoutConstraint.activate([
+            activity.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activity.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+
+    private func setupTable() {
+        tableView.register(CountryTableViewCell.self, forCellReuseIdentifier: CountryTableViewCell.reuseID)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: banner.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-    }
-
-    private func setupBanner() {
-        let banner = UILabel()
-        banner.text             = "Pull for rollback deal 🎉"
-        banner.font             = UIFont.preferredFont(forTextStyle: .subheadline)
-        banner.textAlignment    = .center
-        banner.numberOfLines    = 0
-        banner.backgroundColor  = .systemYellow.withAlphaComponent(0.2)
-        banner.translatesAutoresizingMaskIntoConstraints = false
-
-        let container = UIView(frame: CGRect(x: 0,
-                                             y: 0,
-                                             width: view.bounds.width,
-                                             height: 44))
-        container.addSubview(banner)
-        NSLayoutConstraint.activate([
-            banner.topAnchor.constraint(equalTo: container.topAnchor, constant: 4),
-            banner.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 16),
-            banner.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -16),
-            banner.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -4),
-        ])
-
-        tableView.tableHeaderView = container
-    }
-
-    private func setupSearch() {
-        search.searchResultsUpdater                   = self
-        search.obscuresBackgroundDuringPresentation   = false
-        navigationItem.searchController               = search
-        navigationItem.hidesSearchBarWhenScrolling    = false
-    }
-
-    private func setupRefresh() {
         let rc = UIRefreshControl()
-        rc.attributedTitle = NSAttributedString(string: "")
-        rc.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        rc.addTarget(self, action: #selector(didPull), for: .valueChanged)
         tableView.refreshControl = rc
     }
 
+    private func setupSearch() {
+        search.searchResultsUpdater = self
+        navigationItem.searchController = search
+    }
+
     private func bindViewModel() {
-        viewModel.onUpdate = { [weak self] in
-            self?.tableView.reloadData()
+        viewModel.stateChanged = { [weak self] state in
+            DispatchQueue.main.async {
+                switch state {
+                case .loading: self?.activity.startAnimating()
+                default: self?.activity.stopAnimating()
+                }
+            }
         }
-        viewModel.onError = { [weak self] error in
-            let msg = error.localizedDescription + " — bringing you rollback support!"
-            let alert = UIAlertController(title: "Oops!", message: msg, preferredStyle: .alert)
-            alert.addAction(.init(title: "OK", style: .default))
-            self?.present(alert, animated: true)
+        viewModel.dataChanged = { [weak self] in
+            self?.tableView.reloadData()
         }
     }
 
-    // MARK: - Actions
-
-    @objc private func didPullToRefresh() {
-        guard let deal = viewModel.showDeal() else {
+    @objc private func didPull() {
+        if let deal = viewModel.showDeal() {
+            tableView.reloadData()
             tableView.refreshControl?.endRefreshing()
-            return
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: "Show All", style: .plain,
+                target: self, action: #selector(showAll)
+            )
+            let alert = UIAlertController(title: "Deal of the Day!", message: "2-for-1 above-ground swimming pools in " + deal.name, preferredStyle: .alert)
+            alert.addAction(.init(title: "Nice!", style: .default))
+            present(alert, animated: true)
+            
         }
-        tableView.reloadData()
         tableView.refreshControl?.endRefreshing()
         let topInset = tableView.adjustedContentInset.top
-        tableView.setContentOffset(CGPoint(x: 0, y: -topInset), animated: true)
+                tableView.setContentOffset(CGPoint(x: 0, y: -topInset), animated: true)
+    }
 
-        let alert = UIAlertController(
-            title: "Deal of the Day!",
-            message: "Free shipping to \(deal.name)! 🛒",
-            preferredStyle: .alert
-        )
-        alert.addAction(.init(title: "Score!", style: .default))
-        present(alert, animated: true)
+    @objc private func showAll() {
+        viewModel.resetFilter()
+        navigationItem.rightBarButtonItem = nil
     }
 }
 
 extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tv: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.filtered.count
-    }
-
-    func tableView(_ tv: UITableView,
-                   cellForRowAt ip: IndexPath) -> UITableViewCell {
-        let cell = tv.dequeueReusableCell(
-            withIdentifier: CountryTableViewCell.reuseID,
-            for: ip
-        ) as! CountryTableViewCell
+    func tableView(_ tv: UITableView, numberOfRowsInSection section: Int) -> Int { viewModel.filtered.count }
+    func tableView(_ tv: UITableView, cellForRowAt ip: IndexPath) -> UITableViewCell {
+        guard let cell = tv.dequeueReusableCell(
+            withIdentifier: CountryTableViewCell.reuseID, for: ip) as? CountryTableViewCell else {
+            return UITableViewCell()
+        }
         cell.configure(with: viewModel.filtered[ip.row])
         return cell
     }
