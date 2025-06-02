@@ -40,7 +40,6 @@ final class NetworkService: NetworkServiceProtocol {
                 return try JSONDecoder().decode([Country].self, from: data)
             }
             catch let decodingError as DecodingError {
-                // Now 'decodingError' is of type Error, not String
                 throw NetworkError.decodingError(decodingError)
             }
             catch {
