@@ -91,7 +91,7 @@ class CountriesViewController: UIViewController {
                 title: "Show All", style: .plain,
                 target: self, action: #selector(showAll)
             )
-            let alert = UIAlertController(title: "Deal of the Day!", message: "2-for-1 above-ground swimming pools in " + deal.name, preferredStyle: .alert)
+            let alert = UIAlertController(title: "Deal of the Day!", message: DealMessages.dealMessages[Int.random(in: 0...DealMessages.dealMessages.count - 1)] + deal.name, preferredStyle: .alert)
             alert.addAction(.init(title: "Nice!", style: .default))
             present(alert, animated: true)
             
