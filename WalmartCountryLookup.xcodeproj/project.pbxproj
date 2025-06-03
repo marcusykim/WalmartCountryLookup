@@ -29,6 +29,11 @@
 			path = WalmartCountryLookup;
 			sourceTree = "<group>";
 		};
+		E2A0A2232DEF030F004EB012 /* Resources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				E22837B92DE8009C007E4619 /* WalmartCountryLookup */,
+				E2A0A2232DEF030F004EB012 /* Resources */,
 				E22837B82DE8009C007E4619 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +81,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				E22837B92DE8009C007E4619 /* WalmartCountryLookup */,
+				E2A0A2232DEF030F004EB012 /* Resources */,
 			);
 			name = WalmartCountryLookup;
 			packageProductDependencies = (
