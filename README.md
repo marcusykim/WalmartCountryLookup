@@ -37,19 +37,20 @@ An iOS app written in **Swift 6** and **UIKit** that fetches a list of countries
 
 ```
 WalmartCountryLookup/
-├─ Sources/
+├─ WalmartCountryLookup/
 │  ├─ Models/
 │  │  └─ Country.swift
+│  │  └─ DealMessages.swift
 │  ├─ Services/
+│  │  └─ Config.swift
 │  │  └─ NetworkService.swift
 │  ├─ ViewModels/
 │  │  └─ CountriesViewModel.swift
 │  └─ Views/
-│     ├─ CountryTableViewCell.swift
-│     └─ CountriesViewController.swift
+│  │  └─ CountriesViewController.swift
+│  │  ├─ CountryTableViewCell.swift
 ├─ Resources/
 │  └─ countries.json
-└─ WalmartCountryLookup.xcodeproj
 ```
 
 ---
