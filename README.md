@@ -2,6 +2,9 @@
 
 An iOS app written in **Swift 6** and **UIKit** that fetches a list of countries, lets users live-search, and “pull for rollback deal” (a random country with a deal). If the network fetch fails, it seamlessly falls back to a bundled JSON. Architected in **MVVM** with a protocol-driven networking layer to enable future testability.
 
+
+
+
 ---
 
 ## 🎬 Overview
