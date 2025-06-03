@@ -12,7 +12,8 @@ An iOS app written in **Swift 6** and **UIKit** that fetches a list of countries
 
 ## Screen Recordings
 
-![WalmartSmallDemo](https://github.com/user-attachments/assets/ce6de98b-bad8-4b9e-b20d-641558824b28)
+![WalmartCountryLookupScreenRecordingpt1](https://github.com/user-attachments/assets/4d7bfa92-0f01-4a12-9037-4dde8224cce7)
+
 
 ![WalmartCountryLookupScreenRecordingpt2](https://github.com/user-attachments/assets/527a239f-88b9-4ac4-ab7b-0985ed9f5ee0)
 
