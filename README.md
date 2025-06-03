@@ -6,7 +6,7 @@ An iOS app written in **Swift 6** and **UIKit** that fetches a list of countries
 
 ## Code Walkthrough
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/J5DcUHSth7o?si=ls7Q6rLCTtMwoZcH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[Code Walkthrough Video](https://youtu.be/J5DcUHSth7o?si=AcJDZG2--PprLU5-)
 
 ---
 
