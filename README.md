@@ -2,12 +2,23 @@
 
 An iOS app written in **Swift 6** and **UIKit** that fetches a list of countries, lets users live-search, and “pull for rollback deal” (a random country with a deal). If the network fetch fails, it seamlessly falls back to a bundled JSON. Architected in **MVVM** with a protocol-driven networking layer to enable future testability.
 
+---
 
+## Code Walkthrough
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/J5DcUHSth7o?si=ls7Q6rLCTtMwoZcH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
 
-## 🎬 Overview
+## Screen Recordings
+
+![WalmartSmallDemo](https://github.com/user-attachments/assets/ce6de98b-bad8-4b9e-b20d-641558824b28)
+
+![WalmartCountryLookupScreenRecordingpt2](https://github.com/user-attachments/assets/527a239f-88b9-4ac4-ab7b-0985ed9f5ee0)
+
+---
+
+## Overview
 
 * **Language & UI**: Swift 6, UIKit (programmatic).
 * **Architecture**: Model-View-ViewModel (MVVM) + protocol-oriented networking.
@@ -21,7 +32,7 @@ An iOS app written in **Swift 6** and **UIKit** that fetches a list of countries
 
 ---
 
-## 🗂 Project Structure
+## Project Structure
 
 ```
 WalmartCountryLookup/
@@ -42,7 +53,7 @@ WalmartCountryLookup/
 
 ---
 
-## 🔍 Code Highlights & Justifications
+## Code Highlights & Justifications
 
 ### 1. Model: `Country.swift`
 
@@ -268,7 +279,7 @@ class CountryTableViewCell: UITableViewCell {
 
 ---
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 1. **Clone the repository**
 
@@ -295,7 +306,7 @@ class CountryTableViewCell: UITableViewCell {
 
 ---
 
-## 🙏 Thank You
+## Thank You
 
 Thank you to the Walmart hiring team for reviewing **Walmart Country Lookup**. This project demonstrates clean MVVM architecture, robust async networking with retry/back-off and fallback, and a playful pull-to-deal feature. I look forward to speaking with you soon.
 
