@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		E2D7DC962DF2ACAC00FDC0DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E22837AF2DE8009C007E4619 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E22837B62DE8009C007E4619;
+			remoteInfo = WalmartCountryLookup;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		E22837B72DE8009C007E4619 /* WalmartCountryLookup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalmartCountryLookup.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2D7DC922DF2ACAC00FDC0DD /* WalmartCountryLookupTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalmartCountryLookupTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -34,10 +45,22 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		E2D7DC932DF2ACAC00FDC0DD /* WalmartCountryLookupTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WalmartCountryLookupTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E22837B42DE8009C007E4619 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2D7DC8F2DF2ACAC00FDC0DD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -52,6 +75,7 @@
 			children = (
 				E22837B92DE8009C007E4619 /* WalmartCountryLookup */,
 				E2A0A2232DEF030F004EB012 /* Resources */,
+				E2D7DC932DF2ACAC00FDC0DD /* WalmartCountryLookupTests */,
 				E22837B82DE8009C007E4619 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				E22837B72DE8009C007E4619 /* WalmartCountryLookup.app */,
+				E2D7DC922DF2ACAC00FDC0DD /* WalmartCountryLookupTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,6 +115,29 @@
 			productReference = E22837B72DE8009C007E4619 /* WalmartCountryLookup.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E2D7DC912DF2ACAC00FDC0DD /* WalmartCountryLookupTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2D7DC982DF2ACAC00FDC0DD /* Build configuration list for PBXNativeTarget "WalmartCountryLookupTests" */;
+			buildPhases = (
+				E2D7DC8E2DF2ACAC00FDC0DD /* Sources */,
+				E2D7DC8F2DF2ACAC00FDC0DD /* Frameworks */,
+				E2D7DC902DF2ACAC00FDC0DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2D7DC972DF2ACAC00FDC0DD /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E2D7DC932DF2ACAC00FDC0DD /* WalmartCountryLookupTests */,
+			);
+			name = WalmartCountryLookupTests;
+			packageProductDependencies = (
+			);
+			productName = WalmartCountryLookupTests;
+			productReference = E2D7DC922DF2ACAC00FDC0DD /* WalmartCountryLookupTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -102,6 +150,10 @@
 				TargetAttributes = {
 					E22837B62DE8009C007E4619 = {
 						CreatedOnToolsVersion = 16.3;
+					};
+					E2D7DC912DF2ACAC00FDC0DD = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = E22837B62DE8009C007E4619;
 					};
 				};
 			};
@@ -120,12 +172,20 @@
 			projectRoot = "";
 			targets = (
 				E22837B62DE8009C007E4619 /* WalmartCountryLookup */,
+				E2D7DC912DF2ACAC00FDC0DD /* WalmartCountryLookupTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E22837B52DE8009C007E4619 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2D7DC902DF2ACAC00FDC0DD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -142,7 +202,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E2D7DC8E2DF2ACAC00FDC0DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E2D7DC972DF2ACAC00FDC0DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E22837B62DE8009C007E4619 /* WalmartCountryLookup */;
+			targetProxy = E2D7DC962DF2ACAC00FDC0DD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E22837CB2DE8009F007E4619 /* Debug */ = {
@@ -322,6 +397,42 @@
 			};
 			name = Release;
 		};
+		E2D7DC992DF2ACAC00FDC0DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 79X64CRQXT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcuskim.WalmartCountryLookupTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WalmartCountryLookup.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WalmartCountryLookup";
+			};
+			name = Debug;
+		};
+		E2D7DC9A2DF2ACAC00FDC0DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 79X64CRQXT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcuskim.WalmartCountryLookupTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WalmartCountryLookup.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WalmartCountryLookup";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -339,6 +450,15 @@
 			buildConfigurations = (
 				E22837CB2DE8009F007E4619 /* Debug */,
 				E22837CC2DE8009F007E4619 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2D7DC982DF2ACAC00FDC0DD /* Build configuration list for PBXNativeTarget "WalmartCountryLookupTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2D7DC992DF2ACAC00FDC0DD /* Debug */,
+				E2D7DC9A2DF2ACAC00FDC0DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

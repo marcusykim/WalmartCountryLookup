@@ -5,9 +5,9 @@ class CountriesViewModel {
     private let service: NetworkServiceProtocol
     private var loadTask: Task<Void, Never>? = nil
 
-    private(set) var allCountries = [Country]()
-    private(set) var filtered    = [Country]()
-    private var originalList = [Country]()
+    internal var allCountries = [Country]()
+    internal var filtered    = [Country]()
+    internal var originalList = [Country]()
 
     enum State { case idle, loading, loaded, error(String) }
     var stateChanged: ((State) -> Void)?
