@@ -9,7 +9,7 @@ class CountriesViewModel {
     private(set) var filtered    = [Country]()
     private var originalList = [Country]()
 
-    enum State { case idle, loading, loaded, error(String) }
+    enum State { case loading, loaded, error(String) }
     var stateChanged: ((State) -> Void)?
     var dataChanged: (() -> Void)?
 
@@ -40,7 +40,6 @@ class CountriesViewModel {
 
     private func completeLoad(with list: [Country]) {
         originalList = list
-        allCountries = list
         filtered = list
         stateChanged?(.loaded)
         dataChanged?()

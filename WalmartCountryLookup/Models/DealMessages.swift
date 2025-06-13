@@ -6,7 +6,7 @@ struct DealMessages {
             let data = try? Data(contentsOf: url),
             let messages = try? JSONDecoder().decode([String].self, from: data)
         else {
-            return []
+            return ["The best deals are in "]
         }
         return messages
     }()
