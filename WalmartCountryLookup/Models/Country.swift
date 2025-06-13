@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct Country: Codable, Equatable {
+struct Country: Codable, Hashable {
     let name: String
     let region: String
     let code: String

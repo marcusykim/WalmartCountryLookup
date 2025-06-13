@@ -17,14 +17,8 @@ class CountryTableViewCell: UITableViewCell {
         setupUI()
     }
 
-    
-    
-    
     required init?(coder: NSCoder) { fatalError("init(coder:) not supported") }
 
-    
-    
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         nameLabel.text = nil

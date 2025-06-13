@@ -1,8 +1,29 @@
 import Foundation
 
 enum Config {
-    static let countriesURL = URL(string: "https://gist.githubusercontent.com/peymano-wmt/32dcb892b06648910ddd40406e37fdab/raw/db25946fd77c5873b0303b858e861ce724e0dcd0/countries.json")!
-    static let requestTimeout: TimeInterval = 10 // seconds
-    static let retryCount = 2
-    static let retryDelay: TimeInterval = 1 // seconds
+    private static var info: [String: Any] {
+        Bundle.main.infoDictionary ?? [:]
+    }
+
+    static let countriesURL: URL = {
+        guard
+            let string = info["CountriesURL"] as? String,
+            let url = URL(string: string)
+        else {
+            fatalError("Missing CountriesURL in Info.plist")
+        }
+        return url
+    }()
+
+    static let requestTimeout: TimeInterval = {
+        (info["RequestTimeout"] as? NSNumber)?.doubleValue ?? 10
+    }()
+
+    static let retryCount: Int = {
+        (info["RetryCount"] as? NSNumber)?.intValue ?? 2
+    }()
+
+    static let retryDelay: TimeInterval = {
+        (info["RetryDelay"] as? NSNumber)?.doubleValue ?? 1
+    }()
 }

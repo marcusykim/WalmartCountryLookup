@@ -1,18 +1,27 @@
 import UIKit
 
+extension CountriesViewController: UISearchResultsUpdating {
+    func updateSearchResults(for sc: UISearchController) {
+        viewModel.searchText = sc.searchBar.text ?? ""
+    }
+}
+
 class CountriesViewController: UIViewController {
     private let viewModel = CountriesViewModel()
     private let tableView = UITableView()
+    private var dataSource: UITableViewDiffableDataSource<Section, Country>!
     private let search = UISearchController(searchResultsController: nil)
     private let activity = UIActivityIndicatorView(style: .large)
     private let banner = UILabel()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-        bindViewModel()
-        viewModel.load()
-        
-    }
+   
+    private enum Section { case main }
+       override func viewDidLoad() {
+           super.viewDidLoad()
+           setupUI()
+           bindViewModel()
+           viewModel.load()
+           
+       }
 
     private func setupUI() {
         title = "🌎 Walmart Rollback"
@@ -48,8 +57,8 @@ class CountriesViewController: UIViewController {
 
     private func setupTable() {
         tableView.register(CountryTableViewCell.self, forCellReuseIdentifier: CountryTableViewCell.reuseID)
-        tableView.dataSource = self
-        tableView.delegate = self
+        
+        configureDataSource()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -62,6 +71,24 @@ class CountriesViewController: UIViewController {
         rc.addTarget(self, action: #selector(didPull), for: .valueChanged)
         tableView.refreshControl = rc
     }
+    
+    private func configureDataSource() {
+          dataSource = UITableViewDiffableDataSource<Section, Country>(tableView: tableView) { tableView, indexPath, country in
+              guard let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseID, for: indexPath) as? CountryTableViewCell else {
+                  return UITableViewCell()
+              }
+              cell.configure(with: country)
+              return cell
+          }
+          applySnapshot()
+      }
+
+      private func applySnapshot() {
+          var snapshot = NSDiffableDataSourceSnapshot<Section, Country>()
+          snapshot.appendSections([.main])
+          snapshot.appendItems(viewModel.filtered, toSection: .main)
+          dataSource.apply(snapshot, animatingDifferences: true)
+      }
 
     private func setupSearch() {
         search.searchResultsUpdater = self
@@ -78,13 +105,13 @@ class CountriesViewController: UIViewController {
             }
         }
         viewModel.dataChanged = { [weak self] in
-            self?.tableView.reloadData()
+            self?.applySnapshot()
         }
     }
 
     @objc private func didPull() {
         if let deal = viewModel.showDeal() {
-            tableView.reloadData()
+            applySnapshot()
             tableView.refreshControl?.endRefreshing()
             navigationItem.rightBarButtonItem = UIBarButtonItem(
                 title: "Show All", style: .plain,
@@ -106,20 +133,4 @@ class CountriesViewController: UIViewController {
     }
 }
 
-extension CountriesViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tv: UITableView, numberOfRowsInSection section: Int) -> Int { viewModel.filtered.count }
-    func tableView(_ tv: UITableView, cellForRowAt ip: IndexPath) -> UITableViewCell {
-        guard let cell = tv.dequeueReusableCell(
-            withIdentifier: CountryTableViewCell.reuseID, for: ip) as? CountryTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.configure(with: viewModel.filtered[ip.row])
-        return cell
-    }
-}
 
-extension CountriesViewController: UISearchResultsUpdating {
-    func updateSearchResults(for sc: UISearchController) {
-        viewModel.searchText = sc.searchBar.text ?? ""
-    }
-}
