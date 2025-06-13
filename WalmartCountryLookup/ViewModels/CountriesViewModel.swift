@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 @MainActor
 class CountriesViewModel {
@@ -31,9 +32,10 @@ class CountriesViewModel {
                 self.completeLoad(with: list)
             } catch {
                 stateChanged?(.error(error.localizedDescription))
-                if let fallback = loadFromBundle() {
-                    self.completeLoad(with: fallback)
-                }
+                
+//                if let fallback = loadFromBundle() {
+//                    self.completeLoad(with: fallback)
+//                }
             }
         }
     }

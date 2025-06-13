@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 enum NetworkError: Error {
     case requestFailed(statusCode: Int)
@@ -14,6 +15,7 @@ final class NetworkService: NetworkServiceProtocol {
     private let session: URLSession
     private let url: URL
     private let retries: Int
+    let alert = UIAlertController(title: "Error", message: "Please try again.", preferredStyle: .alert)
 
     init(session: URLSession = URLSession(configuration: .default),
          url: URL = Config.countriesURL,

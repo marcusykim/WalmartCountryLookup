@@ -100,6 +100,17 @@ class CountriesViewController: UIViewController {
             DispatchQueue.main.async {
                 switch state {
                 case .loading: self?.activity.startAnimating()
+                case .error(_):
+                    
+                    let alert = UIAlertController(title: "Error", message: "Try Again", preferredStyle: .alert)
+                    alert.addAction(.init(title: "Retry", style: .default, handler: {_ in 
+                        self?.applySnapshot()
+                    }))
+                    alert.addAction(.init(title: "Cancel", style: .default, handler: {_ in
+                        self?.viewModel.resetFilter()
+                    }))
+                    self!.present(alert, animated: true)
+                    
                 default: self?.activity.stopAnimating()
                 }
             }
