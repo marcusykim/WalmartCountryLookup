@@ -6,7 +6,6 @@ class CountriesViewController: UIViewController {
     private let search = UISearchController(searchResultsController: nil)
     private let activity = UIActivityIndicatorView(style: .large)
     private let banner = UILabel()
-    private let spinner = UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
