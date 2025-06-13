@@ -33,9 +33,9 @@ class CountriesViewModel {
             } catch {
                 stateChanged?(.error(error.localizedDescription))
                 
-//                if let fallback = loadFromBundle() {
-//                    self.completeLoad(with: fallback)
-//                }
+                if let fallback = loadFromBundle() {
+                    self.completeLoad(with: fallback)
+                }
             }
         }
     }

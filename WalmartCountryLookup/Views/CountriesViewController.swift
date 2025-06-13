@@ -104,7 +104,7 @@ class CountriesViewController: UIViewController {
                     
                     let alert = UIAlertController(title: "Error", message: "Try Again", preferredStyle: .alert)
                     alert.addAction(.init(title: "Retry", style: .default, handler: {_ in 
-                        self?.applySnapshot()
+                        self?.viewModel.load()
                     }))
                     alert.addAction(.init(title: "Cancel", style: .default, handler: {_ in
                         self?.viewModel.resetFilter()
