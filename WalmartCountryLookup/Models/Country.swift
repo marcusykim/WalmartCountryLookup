@@ -8,7 +8,7 @@ struct Country: Codable, Equatable {
     let capital: String
 
     enum CodingKeys: String, CodingKey {
-        case name, region, code = "cca2", capital
+        case name, region, code, capital
     }
 
     init(name: String, region: String, code: String, capital: String) {
