@@ -10,9 +10,10 @@ An iOS app written in **Swift 6** using **UIKit**. It fetches a list of countrie
 
 ![Demo Gif 6 13 2025](https://github.com/user-attachments/assets/cc2879ea-9c78-4779-889a-189e5243246d)
 
+![Demo Gif 6 13 2025 pt2](https://github.com/user-attachments/assets/8ee11a0b-8efa-41aa-b38a-4617f7df38be)
 
 
-![Demo Gif 6 13 2025 pt2](https://github.com/user-attachments/assets/5bb46110-3014-4d84-8d3a-a93a7dabbfee)
+
 
 
 ---
