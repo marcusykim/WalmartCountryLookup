@@ -31,20 +31,29 @@ An iOS app written in **Swift 6** using **UIKit**. It fetches a list of countrie
 ## Project Structure
 
 WalmartCountryLookup/
-├─ WalmartCountryLookup/
-│ ├─ Models/
-│ │ ├─ Country.swift
-│ │ └─ DealMessages.swift
-│ ├─ Services/
-│ │ ├─ Config.swift
-│ │ └─ NetworkService.swift
-│ ├─ ViewModels/
-│ │ └─ CountriesViewModel.swift
-│ └─ Views/
-│ ├─ CountriesViewController.swift
-│ └─ CountryTableViewCell.swift
+├─ README.md
 ├─ Resources/
-│ └─ countries.json
+│  └─ countries.json
+├─ WalmartCountryLookup/
+│  ├─ AppDelegate.swift
+│  ├─ SceneDelegate.swift
+│  ├─ Info.plist
+│  ├─ Assets.xcassets/
+│  │  ├─ AppIcon.appiconset/
+│  │  └─ AccentColor.colorset/
+│  ├─ Models/
+│  │  ├─ Country.swift
+│  │  └─ DealMessages.swift
+│  ├─ Services/
+│  │  ├─ Config.swift
+│  │  └─ NetworkService.swift
+│  ├─ ViewModels/
+│  │  └─ CountriesViewModel.swift
+│  └─ Views/
+│     ├─ CountriesViewController.swift
+│     └─ CountryTableViewCell.swift
+└─ WalmartCountryLookup.xcodeproj/
+   └─ (Xcode project files)
 
 
 ---
