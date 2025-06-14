@@ -7,8 +7,10 @@ An iOS app written in **Swift 6** using **UIKit**. It fetches a list of countrie
 ## Screen Recordings (GIFs)
 
 <!-- Add your GIF links or files here -->
-![Demo Part 1](gif1.gif)
-![Demo Part 2](gif2.gif)
+
+https://github.com/user-attachments/assets/409fd824-fe69-42a8-9eb6-64da3963db61
+
+
 
 ---
 
