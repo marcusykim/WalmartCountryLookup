@@ -29,7 +29,7 @@ An iOS app written in **Swift 6** using **UIKit**. It fetches a list of countrie
 ---
 
 ## Project Structure
-
+```
 WalmartCountryLookup/
 ├─ README.md
 ├─ Resources/
@@ -54,7 +54,7 @@ WalmartCountryLookup/
 │     └─ CountryTableViewCell.swift
 └─ WalmartCountryLookup.xcodeproj/
    └─ (Xcode project files)
-
+```
 
 ---
 
